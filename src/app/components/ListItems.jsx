@@ -4,7 +4,7 @@ import { RxMagnifyingGlass } from 'react-icons/rx'
 
 const ListItems = ({ data, radioSelected, currentPage, totalPage, indexOfFirstItem, indexOfLastItem, handlePageChange, handleClickDetailItem }) => {
 
-  const currentItems = data.sort((a, b)=> radioSelected === 1 ? b.harga - a.harga : a.harga - b.harga).slice(indexOfFirstItem, indexOfLastItem)
+  const currentItems = data?.sort((a, b)=> radioSelected === 1 ? b.harga - a.harga : a.harga - b.harga).slice(indexOfFirstItem, indexOfLastItem)
 
   const renderButton = () => {
     const buttons = []

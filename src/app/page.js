@@ -9,9 +9,9 @@ import Keranjang from "./components/Keranjang";
 
 async function getProduct() {
   try {
-    const res = await fetch(`http://localhost:5000/product`);
+    const res = await fetch(`/db.json`);
     const data = await res.json()
-    return data;
+    return data.product;
   } catch (error) {
     return error
   }
@@ -19,12 +19,14 @@ async function getProduct() {
 
 async function searchProduct(filter, konsol=null) {
   try {
-    const res = await fetch(`http://localhost:5000/product?q=${filter}${konsol !== null ? `&&konsol=${konsol}` : ''}`);
+    const res = await fetch(`/db.json`);
     const data = await res.json()
-    return data;
+    const ubahData = data.product.filter(dat=>dat.nama.toLowerCase().includes(filter.toLowerCase()) || dat.konsol.includes(filter))
+    return ubahData
   } catch (error) {
     return error
   }
+
 }
 
 export default  function Home() {
@@ -44,8 +46,6 @@ export default  function Home() {
   const indexOfFirstItem = indexOfLastItem - itemPerPage
 
   const [itemDetail, setItemDetail] = useState(null)
-
-  const [isDetailBarang, setIsDetailBarang] = useState(false)
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -99,6 +99,8 @@ export default  function Home() {
   const handleClickKeranjang = () => {
     setIsKeranjang(prev=>!prev)
   }
+  
+  console.log(data)
 
   return (
     <>
