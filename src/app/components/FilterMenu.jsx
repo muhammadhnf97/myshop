@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-const FilterMenu = ({ filterValue, handleChangeFilterValue, handleClickResetSearch, handleChangeSortirHarga, radioSelected }) => {
+const FilterMenu = ({ filterValue, handleChangeFilterValue, handleChangeSortirHarga, radioSelected }) => {
   return (
         <div className='w-full bg-white bg-opacity-70 p-5 rounded-lg border-2 border-white shadow-lg space-y-2 md:w-96 md:flex md:flex-col md:space-y-3 md:fixed md:top-5'>
             <h2 className="font-semibold">Filter</h2>
@@ -20,7 +20,6 @@ const FilterMenu = ({ filterValue, handleChangeFilterValue, handleClickResetSear
                 <input type="radio" value={2} checked={radioSelected === 2} name="sortirTerendah"  className="w-5 h-5" onChange={()=>handleChangeSortirHarga(2)} />
                 <p className="px-2">Urutkan dari harga terendah</p>
             </div>
-            <button name='reset' onClick={handleClickResetSearch} className='w-full py-1 bg-red-500 shadow-md'>Reset Search</button>
         </div>
   )
 }

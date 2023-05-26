@@ -74,15 +74,6 @@ export default  function Home() {
     currentPage !== 1 ? setCurrentPage(1) : currentPage
   }, [filterValue])
 
-  const handleClickResetSearch = () => {
-    setFilterValue(prev=>{
-      return {
-        ...prev,
-      nama: '',
-      }
-    })
-    getProduct().then(product=>setData(product))
-  }
 
   const handleChangeSortirHarga = (selected) => {
     selected === 1 ? setRadioSelected(1) : setRadioSelected(2)

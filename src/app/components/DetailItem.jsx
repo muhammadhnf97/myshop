@@ -60,8 +60,6 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem }) => {
         setIsComplete(false)
     }, [])
 
-    console.log(order)
-
   return (
     <>
     <button className='w-screen h-[110vh] bg-black -top-10 left-0 fixed bg-opacity-60 z-10 md:h-screen md:top-0' onClick={handleClickCloseDetailItem}></button>
