@@ -36,17 +36,7 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
 
     
     const handleClickOrder = () => {
-        // dispatch(updateKeranjang(prev=>{
-        //     return [
-        //         ...prev, {
-        //         idBelanja: lastId + 1,
-        //         namaBarang: itemDetail.nama,
-        //         jumlahBeli: jumlahPesan,
-        //         totalBayar: totalBayar,
-        //         tglBeli: `${day}-${month}-${year}`,
-        //         fotoBarang: itemDetail.foto
-        //     }]
-        // }))
+        setItemDetail(null)
         setOrder((prev=>{
             return [
                 ...prev, {
@@ -65,37 +55,6 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
     }, [order])
 
     console.log(order)
-
-
-    // useEffect(()=>{
-    //     setItem({
-    //         idBelanja: lastId + 1,
-    //         namaBarang: itemDetail.nama,
-    //         tglBeli: `${day}-${month}-${year}`,
-    //         fotoBarang: itemDetail.foto
-    //     })
-    // },  [])
-
-
-    // useEffect(()=>{
-    //     setItem(prev=>{
-    //         return {
-    //             ...prev,
-    //             jumlahBeli: jumlahPesan,
-    //             totalBayar: totalBayar
-    //         }
-    //     })
-    // }, [totalBayar])
-
-    // useEffect(prev=>{
-    //     setOrder(()=>{
-    //         return {
-    //             ...prev,
-    //             item
-    //         }
-    //     })
-    // }, [item])
-
 
   return (
     <>

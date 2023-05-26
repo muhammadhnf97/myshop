@@ -6,6 +6,7 @@ import FilterMenu from "./components/FilterMenu";
 import { ImCart } from 'react-icons/im'
 import DetailItem from "./components/DetailItem";
 import Keranjang from "./components/Keranjang";
+import Image from "next/image";
 
 async function getProduct() {
   try {
@@ -47,6 +48,8 @@ export default  function Home() {
 
   const [itemDetail, setItemDetail] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -86,6 +89,7 @@ export default  function Home() {
 
   useEffect(()=>{
     getProduct().then(value=>setData(value))
+    setIsLoading(false)
   }, [])
 
   const handleClickDetailItem = (id) => {
@@ -104,7 +108,15 @@ export default  function Home() {
 
   return (
     <>
+    {
+      isLoading && 
+      <div className='w-screen h-screen bg-black bg-opacity-70 flex items-center justify-center fixed z-20'>
+      <Image src={'/images/loading.png'} alt='loading' width={50} height={50} className='object-center animate-spin' />
+    </div>
+    }
     <main className="px-5 space-y-5 md:space-y-0 py-3 md:py-0">
+      
+
       <FilterMenu   
         filterValue={filterValue}
         handleChangeFilterValue={handleChangeFilterValue}
