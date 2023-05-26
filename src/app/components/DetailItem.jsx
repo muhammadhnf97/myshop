@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { updateKeranjang } from '../redux/features/keranjangSlice'
 
-const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) => {
+const DetailItem = ({ itemDetail, handleClickCloseDetailItem }) => {
 
     const currentDate = new Date()
     const day = currentDate.getDate()
@@ -19,6 +19,7 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
     const [jumlahPesan, setJumlahPesan] = useState(1)
     const [totalBayar, setTotalBayar] = useState(itemDetail.harga * 1)
     const [order, setOrder] = useState(keranjangBelanja)
+    const [isComplete, setIsComplete] = useState(false)
 
     const lastId = keranjangBelanja?.reduce((_, obj)=>Math.max(obj.idBelanja), 0)
     
@@ -36,7 +37,6 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
 
     
     const handleClickOrder = () => {
-        setItemDetail(null)
         setOrder((prev=>{
             return [
                 ...prev, {
@@ -48,11 +48,17 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
                 fotoBarang: itemDetail.foto
             }]
         }))
+        setIsComplete(prev=>!prev)
+           
     }
 
     useEffect(()=>{
         dispatch(updateKeranjang(order))
     }, [order])
+
+    useEffect(()=>{
+        setIsComplete(false)
+    }, [])
 
     console.log(order)
 
@@ -82,6 +88,15 @@ const DetailItem = ({ itemDetail, handleClickCloseDetailItem, setItemDetail }) =
         </div>
         <button className='w-full h-12 bg-green-400 hover:bg-green-500 active:bg-green-600 text-lg' onClick={handleClickOrder}>Order</button>
     </div>
+    {   isComplete &&
+        <>
+        <button className='w-screen h-[110vh] bg-black -top-10 left-0 fixed z-20 bg-opacity-70' onClick={handleClickCloseDetailItem}></button>    
+        <div className='w-fit h-fit fixed p-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white z-30 flex flex-col items-center justify-center text-center rounded-lg'>
+        <p>Data telah ditambahkah</p>
+        <button className='rounded-lg p-5 shadow-md bg-green-500 hover:bg-green-600 active:bg-green-700' onClick={handleClickCloseDetailItem}>OK</button>
+    </div>
+    </>
+    }
     </>
   )
 }

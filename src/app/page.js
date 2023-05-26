@@ -39,6 +39,7 @@ export default  function Home() {
   const [radioSelected, setRadioSelected] = useState(2)
 
   const [isKeranjang, setIsKeranjang] = useState(false)
+  const [isDetailItem, setIsDetailItem] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(1)
   const itemPerPage = 6
@@ -94,10 +95,11 @@ export default  function Home() {
 
   const handleClickDetailItem = (id) => {
     setItemDetail(data.find(product=>product.id === id))
+    setIsDetailItem(prev=>!prev)
   }
 
   const handleClickCloseDetailItem = () => {
-    setItemDetail(null)
+    setIsDetailItem(prev=>!prev)
   }
 
   const handleClickKeranjang = () => {
@@ -134,11 +136,10 @@ export default  function Home() {
         handlePageChange={handlePageChange}
         handleClickDetailItem={handleClickDetailItem}
       />
-      { itemDetail !== null &&
+      { isDetailItem &&
       <DetailItem
       itemDetail={itemDetail}
-      handleClickCloseDetailItem={handleClickCloseDetailItem}
-      setItemDetail={setItemDetail} />
+      handleClickCloseDetailItem={handleClickCloseDetailItem} />
       }
       <button className="fixed h-24 w-24 rounded-tr-full rounded-br-full duration-200 bottom-1/2 translate-y-1/2 -left-14 text-black flex items-center justify-center shadow-lg bg-red-500 hover:bg-red-600 md:translate-y-0 md:bottom-8 md:left-5 md:rounded-full md:hover:translate-x-0 md:hover:scale-105 hover:translate-x-14" onClick={handleClickKeranjang}>
         <ImCart className="w-10 h-10" />
