@@ -113,7 +113,6 @@ export default  function Home() {
       <FilterMenu   
         filterValue={filterValue}
         handleChangeFilterValue={handleChangeFilterValue}
-        handleClickResetSearch={handleClickResetSearch}
         handleChangeSortirHarga={handleChangeSortirHarga}
         radioSelected={radioSelected}
       />
